@@ -1,0 +1,9 @@
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin font-smoothing($type: antialiased) {
+  -webkit-font-smoothing: $type;
+  font-smoothing: $type;
+}

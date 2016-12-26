@@ -1,0 +1,61 @@
+before_script:
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh-keyscan -H 'wip.aerolab.co' >> ~/.ssh/known_hosts
+  - export CI_BRANCH_SLUG=`echo ${CI_BUILD_REF_NAME//\//-} | tr '[:upper:]' '[:lower:]'`
+
+stages:
+  - deploy
+
+deploy_to_staging:
+  stage: deploy
+  only:
+    - master
+  environment:
+    name: staging
+    url: http://$CI_PROJECT_NAME-stg.wip.aerolab.co
+  script:
+    - ssh dokku@wip.aerolab.co apps:create ${CI_PROJECT_NAME}-stg 2> /dev/null || echo "App already exists"
+    - ssh dokku@wip.aerolab.co maintenance:on ${CI_PROJECT_NAME} > /dev/null
+    - git push dokku@wip.aerolab.co:${CI_PROJECT_NAME} HEAD:refs/heads/master --force
+    - ssh dokku@wip.aerolab.co maintenance:off ${CI_PROJECT_NAME} > /dev/null
+
+deploy_to_dev:
+  stage: deploy
+  only:
+    - dev
+  environment:
+    name: dev
+    url: http://$CI_PROJECT_NAME-dev.wip.aerolab.co
+  script:
+    - ssh dokku@wip.aerolab.co apps:create ${CI_PROJECT_NAME}-dev 2> /dev/null || echo "App already exists"
+    - ssh dokku@wip.aerolab.co maintenance:on ${CI_PROJECT_NAME}-dev > /dev/null
+    - git push dokku@wip.aerolab.co:${CI_PROJECT_NAME}-dev HEAD:refs/heads/master --force
+    - ssh dokku@wip.aerolab.co maintenance:off ${CI_PROJECT_NAME}-dev > /dev/null
+
+deploy_to_feature:
+  stage: deploy
+  except:
+    - master
+    - dev
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://$CI_PROJECT_NAME-$CI_BUILD_REF_NAME.wip.aerolab.co
+    on_stop: stop_feature_review
+  script:
+    - ssh dokku@wip.aerolab.co apps:create ${CI_PROJECT_NAME}-${CI_BUILD_REF_NAME} 2> /dev/null || echo "App already exists"
+    - ssh dokku@wip.aerolab.co maintenance:on ${CI_PROJECT_NAME}-${CI_BUILD_REF_NAME} > /dev/null
+    - git push dokku@wip.aerolab.co:${CI_PROJECT_NAME}-${CI_BUILD_REF_NAME} HEAD:refs/heads/master --force
+    - ssh dokku@wip.aerolab.co maintenance:off ${CI_PROJECT_NAME}-${CI_BUILD_REF_NAME} > /dev/null
+
+stop_feature_review:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - ssh dokku@wip.aerolab.co apps:destroy ${CI_PROJECT_NAME}-${CI_BUILD_REF_NAME} --force 2> /dev/null || echo "App already destroyed"
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop

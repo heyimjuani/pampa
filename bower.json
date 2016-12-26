@@ -1,0 +1,19 @@
+{
+  "name": "galicia-seguros",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Andrés Torres <andresto1991@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://git.aerolab.co/galicia/galicia-seguros",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

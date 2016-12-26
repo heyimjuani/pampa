@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  @include font-smoothing;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: black;
+  font: 400 15px Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: inherit;
+}
+
+p {
+  font-size: 15px;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+path {
+  fill: inherit;
+  stroke: inherit;
+}
