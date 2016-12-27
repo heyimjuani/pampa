@@ -1,0 +1,64 @@
+#ethos {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 4em;
+
+  article {
+    background: #fff;
+    color: $text-on-light;
+    padding: 40px 70px;
+
+    header {
+      margin-bottom: 40px;
+
+      &:after {
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        clear: both;
+      }
+      span {
+        float: left;
+        color: $color3;
+        font-size: .833em;
+        position: relative;
+        top: 10px;
+      }
+      img {
+        float: right;
+        width: 138px;
+      }
+    }
+    p {
+      margin-bottom: 1.75em;
+    }
+    .big {
+      font-size: 1.33em;
+      font-weight: 800;
+      line-height: 1.75em;
+    }
+    footer {
+      padding-top: 30px;
+      text-align: center;
+      color: $color3;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #ethos {
+    article {
+      padding: 40px 20px;
+      header {
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 1em;
+      }
+      .big {
+        font-size: 1.125em;
+      }
+    }
+  }
+}

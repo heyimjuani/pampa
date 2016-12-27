@@ -1,0 +1,95 @@
+#navigation {
+  @include display-flex;
+  @include flex-props(row wrap, space-between, flex-start, flex-start);
+  width: 100%; 
+  height: 289px;
+
+  ul {
+    padding: 0 20px;
+    margin: 24px 0 0 0;
+    position: relative;
+    z-index: 2;
+  }
+  li {
+    display: inline-block;
+    list-style: none;
+    padding: 0 20px;
+    a {
+      color: $text-on-dark;
+      text-decoration: none;
+      font-size: .833em;
+      text-transform: uppercase;
+      font-weight: 800;
+      &.icon-facebook {
+        color: $color1;
+      }
+      &.icon-twitter {
+        color: $color2;
+      }
+      &.icon-instagram {
+        color: $color3;
+      }
+    }
+  }
+  ul.social li {
+    padding: 0 20px 0 0;
+  }
+  h1 {
+    text-align: center;
+    font-size: 54px;
+  }
+  .icon-logo {
+    color: #fff;
+    text-decoration: none;
+    span {
+      display: none;
+    }
+  }
+}
+
+#graph {
+  width: 100%;
+  max-width: 692px;
+  height: 289px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  background: url(../images/viz.png) no-repeat top center;
+  background-size: 100% auto;
+
+  h1 {
+    margin: 0;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #navigation {
+    height: auto;
+    display: block;
+    ul {
+      text-align: center;
+      margin-bottom: 2em;
+      padding-left: 40px;
+    }
+    ul.inner {
+      display: none;
+    }
+  }
+  #graph {
+    position: relative;
+    left: 0;
+    transform: none;
+    height: 0;
+    padding-top: 37%;
+
+    h1 {
+      top: 23%;
+      font-size: 8vw;
+    }
+  }
+}
