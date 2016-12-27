@@ -1,12 +1,12 @@
 {
-  "name": "galicia-seguros",
+  "name": "pampa-warro",
   "description": "",
   "main": "index.js",
   "authors": [
-    "Andrés Torres <andresto1991@gmail.com>"
+    "Juani Ruiz Echazu <juani@aerolab.co>"
   ],
   "license": "ISC",
-  "homepage": "https://git.aerolab.co/galicia/galicia-seguros",
+  "homepage": "https://github.com/heyimjuani/pampa",
   "private": true,
   "ignore": [
     "**/.*",

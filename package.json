@@ -1,5 +1,5 @@
 {
-  "name": "galicia-seguros",
+  "name": "pampa-warro",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.aerolab.co/galicia/galicia-seguros.git"
+    "url": "https://github.com/heyimjuani/pampa.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://git.aerolab.co/galicia/galicia-seguros/issues"
+    "url": "https://github.com/heyimjuani/pampa/issues"
   },
-  "homepage": "https://git.aerolab.co/galicia/galicia-seguros",
+  "homepage": "https://github.com/heyimjuani/pampa",
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-preset-es2015": "^6.9.0",
