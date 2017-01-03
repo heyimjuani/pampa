@@ -33,6 +33,14 @@
     p {
       margin-bottom: 1.75em;
     }
+    a {
+      color: $text-on-light;
+      text-decoration: none;
+      transition: color ease-in-out .15s;
+      &:hover {
+        color: $color1;
+      }
+    }
     .big {
       font-size: 1.33em;
       font-weight: 800;
