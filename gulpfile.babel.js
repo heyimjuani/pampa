@@ -21,6 +21,8 @@ const srcImages = './src/images/**/*.{png,jpg,jpeg,gif,svg}';
 const destImages = './dist/assets/images';
 const srcFonts = './src/fonts/**/*';
 const destFonts = './dist/assets/fonts';
+const srcRoot = './src/root/**/*';
+const destRoot = './dist/';
 
 gulp.task('views', () =>
   gulp.src([srcViews, '!./src/views/**/_*.pug'])
@@ -88,18 +90,25 @@ gulp.task('fonts', () =>
     .pipe(gulp.dest(destFonts))
 );
 
+gulp.task('root', () =>
+  gulp.src(srcRoot)
+    .pipe($.newer(destRoot))
+    .pipe(gulp.dest(destRoot))
+);
+
 gulp.task('watch', ['build'], () => {
   browsersync.init({server: {baseDir: './dist'}});
   gulp.watch([srcViews, './src/**/*.{html,json}'], ['views']);
   gulp.watch([srcImages], ['images', 'views']);
   gulp.watch([srcStyles], ['styles']);
+  gulp.watch([srcRoot], ['root']);
   gulp.watch([srcScripts], ['scripts']);
   gulp.watch(['./dist/**/*.{html,js}']).on('change', browsersync.reload);
 });
 
 gulp.task('bower', ['styles:bower', 'scripts:bower']);
 
-gulp.task('build', ['bower', 'styles', 'scripts', 'images', 'fonts', 'views']);
+gulp.task('build', ['bower', 'styles', 'scripts', 'images', 'fonts', 'views', 'root']);
 
 gulp.task('serve', ['build', 'watch']);
 

@@ -1,8 +1,11 @@
 #navigation {
   @include display-flex;
   @include flex-props(row wrap, space-between, flex-start, flex-start);
+  z-index: 1000;
   width: 100%; 
   height: 289px;
+  position: fixed;
+  top: 0;
 
   ul {
     padding: 0 20px;
@@ -13,8 +16,8 @@
   li {
     display: inline-block;
     list-style: none;
-    padding: 0 20px;
     a {
+      padding: 20px;
       color: $text-on-dark;
       text-decoration: none;
       font-size: .833em;
@@ -57,6 +60,8 @@
   z-index: 1;
   background: url(../images/viz.png) no-repeat top center;
   background-size: 100% auto;
+  opacity: 1;
+  transition: opacity ease-in-out 0.2s;
 
   h1 {
     margin: 0;
@@ -91,5 +96,32 @@
       top: 23%;
       font-size: 8vw;
     }
+  }
+
+  #navigation.scrolled-nav {
+    .inner {
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      transition: height ease-in-out 0.5s;
+    }
+
+    #graph {
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      transition: height ease-in-out 0.5s;
+    }
+  }
+}
+
+#navigation.scrolled-nav {
+  height: 80px;
+  background: rgb(10, 19, 34);
+  transition: background ease-in-out 0.5s;
+
+  #graph {
+    opacity: 0;
+    transition: opacity ease-in-out 0.5s;
   }
 }
