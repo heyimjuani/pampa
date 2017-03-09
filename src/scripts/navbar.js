@@ -4,7 +4,7 @@
     var nav = $('#navigation');
     var isFixed = false;
     var $w = $(window);
-    var margin = 50;
+    var margin = 100;
 
     function fixStyle() {
       var scrollTop = $w.scrollTop();
