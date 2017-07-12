@@ -99,6 +99,7 @@ section.align-center {
 }
 
 .btn-main {
+  z-index: 1000;
   border: 2px solid $color3;
   color: $color3;
   text-transform: uppercase;
